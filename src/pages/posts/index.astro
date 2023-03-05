@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import { getCollection } from 'astro:content';
+const postEntries = await getCollection('posts');
+---
+
+<Layout title="Sstark Blog | Posts">
+	<main>
+		<h1 class="text-center mt-4">Hello Astro</h1>
+		<ul>
+			{
+				postEntries.map(post => 
+					<li>
+						<h2>{post.data.title}</h2>
+						<a href={`/posts/${post.slug}`}>{post.slug}</a>
+					</li>
+				)
+			}
+		</ul>
+	</main>
+</Layout>
